@@ -24,7 +24,7 @@ function App() {
         <Route path="reset-account" element={ <Suspense fallback={<LoadingPage />}> {" "} <ResetAccountPage />{" "} </Suspense> } />
         <Route path="admin-dashboard" element={ <Suspense fallback={<LoadingPage />}> {" "} <AdminPanelPage />{" "} </Suspense> } />
         <Route path="approval-page" element={ <Suspense fallback={<LoadingPage />}> {" "} <ApprovalPage />{" "} </Suspense> } />
-        <Route path="doctor-detail-page" element={ <Suspense fallback={<LoadingPage />}> {" "} <DoctorDetailPage />{" "} </Suspense> } />
+        <Route path="doctor-details-page/:id" element={ <Suspense fallback={<LoadingPage />}> {" "} <DoctorDetailPage />{" "} </Suspense> } />
       </Routes>
     {/* // </ProviderWrapper> */}
     </BrowserRouter>

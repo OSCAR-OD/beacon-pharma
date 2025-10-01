@@ -4,20 +4,55 @@ import "./LoginPage.css";
 import "./AdminPanel.css";
 import "./ApprovalPage.css";
 export default function ApprovalPage() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+  const doctors = [
+    {
+      id: 1,
+      date: "30/June/2020",
+      time: "02:12PM",
+      name: "Dr. Shamim Shakil",
+      designation: "MBBS",
+      status: "PENDING",
+    },
+    {
+      id: 2,
+      date: "29/June/2020",
+      time: "02:18PM",
+      name: "Dr. Shamim Shakil",
+      designation: "MBBS",
+      status: "PENDING",
+    },
+    {
+      id: 3,
+      date: "30/June/2020",
+      time: "02:16PM",
+      name: "Dr. Shamim Shakil",
+      designation: "MBBS",
+      status: "PENDING",
+    },
+    {
+      id: 4,
+      date: "30/June/2020",
+      time: "02:10PM",
+      name: "Dr. Shamim Shakil",
+      designation: "MBBS",
+      status: "PENDING",
+    },
+  ];
+
   return (
     <div className="approval-page">
       {/* Header */}
       <header className="approval-header">
-           <button className="menu-btn">
-            <i className="fa-solid fa-bars"></i>
+        <button className="menu-btn">
+          <i className="fa-solid fa-bars"></i>
         </button>
         <h2>Approval</h2>
       </header>
 
       {/* Sub Header */}
       <div className="sub-header">
-        <button className="back-btn"  onClick={() => navigate(-1)}>
+        <button className="back-btn" onClick={() => navigate(-1)}>
           <i className="fa-solid fa-arrow-left"></i>
         </button>
       </div>
@@ -47,34 +82,21 @@ export default function ApprovalPage() {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>30/June/2020</td>
-            <td>02:12PM</td>
-            <td>Dr. Shamim Shakil</td>
-            <td>MBBS</td>
-            <td className="status pending">PENDING</td>
-          </tr>
-          <tr>
-            <td>29/June/2020</td>
-            <td>02:18PM</td>
-            <td>Dr. Ramim Hasan</td>
-            <td>MBBS</td>
-            <td className="status pending">PENDING</td>
-          </tr>
-          <tr>
-            <td>30/June/2020</td>
-            <td>02:16PM</td>
-            <td>Dr. Shamim Shakil</td>
-            <td>MBBS</td>
-            <td className="status pending">PENDING</td>
-          </tr>
-          <tr>
-            <td>30/June/2020</td>
-            <td>02:10PM</td>
-            <td>Dr. Shamim Shakil</td>
-            <td>MBBS</td>
-            <td className="status pending">PENDING</td>
-          </tr>
+          {doctors.map((doc) => (
+            <tr
+              key={doc.id}
+              onClick={() => navigate(`/doctor-details-page/${doc.id}`)}
+              style={{ cursor: "pointer" }}
+            >
+              <td>{doc.date}</td>
+              <td>{doc.time}</td>
+              <td>{doc.name}</td>
+              <td>{doc.designation}</td>
+              <td className={`status ${doc.status.toLowerCase()}`}>
+                {doc.status}
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
