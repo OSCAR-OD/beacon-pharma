@@ -1,0 +1,238 @@
+.sub-header {
+  background: #0fc1a7;
+  padding: 0.6rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+/* Left section: arrow + doctor/patient */
+.left-section {
+  display: flex;
+  align-items: center;
+  gap: 1.7rem;
+}
+
+/* Back arrow */
+.back-btn {
+  background: #06b89c;
+  border: none;
+  color: #fff;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+/* Doctor/Patient buttons */
+.role-btns {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.doctor-btn,
+.patient-btn {
+  background: #ffffff;
+  color: #0fc1a7;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.doctor-btn {
+  background: #00cbff;
+  color: #fff;
+}
+
+.patient-btn {
+  background: #00eb9b;
+  color: #fff;
+}
+
+.doctor-btn:hover,
+.patient-btn:hover {
+  background: #0aa38b;
+  color: #fff;
+}
+.today-btn,
+.week-btn,
+.month-btn {
+  padding: 0.5rem 0.5rem;
+  border-radius: 8px;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+.today-btn {
+  background: #f2c81c;
+}
+.week-btn {
+  background: #00cbff;
+}
+.month-btn {
+  background: #00eb9b;
+}
+.today-btn:hover {
+  background: #dcb411;
+}
+.week-btn:hover {
+  background: #00a9d5;
+}
+.month-btn:hover {
+  background: #05df95;
+}
+/* Center search bar */
+.search-container {
+  background: #fff;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  padding: 0.4rem 0.8rem;
+  width: 400px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.search-icon {
+  color: #0fc1a7;
+  margin-right: 8px;
+  font-size: 1rem;
+}
+
+.search-input {
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 0.95rem;
+}
+
+/* Download button (right side) */
+.download-btn {
+  background: #0fc1a7;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.3s ease;
+}
+
+.download-btn:hover {
+  background: #0aa38b;
+}
+/* Disbursment page */
+.underline-text {
+  text-decoration: underline;
+  text-decoration-color: #0fc1a7; /* teal-green underline for better look */
+  text-underline-offset: 3px; /* adds spacing between text and underline */
+  font-weight: 500;
+  color: #0fc1a7 !important;
+}
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 500px;
+  max-height: 80vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: none;
+  background: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.modal-images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.modal-images img {
+  width: 100px;
+  height: auto;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+.tab-header {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 1rem;
+}
+
+.tab-btn {
+  padding: 0.6rem 1.4rem;
+  border: none;
+  background: #e0f5f2;
+  color: #0fc1a7;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 18px;
+  font-family: Roboto;
+}
+
+.tab-btn.active {
+  background: #0fc1a7;
+  color: #fff;
+}
+
+.tab-content {
+  /* border-top: 1px solid #ddd; */
+  padding-top: 1rem;
+}
+.modal-header {
+  display: flex;
+  justify-content: center;
+}
+.modal-heading {
+  display: inline-flex;
+  text-align: center;
+  color: #455072;
+}
+.modal-heading-span {
+  color: #0fc1a7;
+}
+.tab-content p {
+  color: #455072;
+  font-family: Roboto;
+  font-size: 18px;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

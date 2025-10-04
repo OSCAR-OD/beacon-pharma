@@ -1,0 +1,41 @@
+.user-container{
+
+}
+.user-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;         /* spacing between buttons */
+  margin-top: 17vw; /* push down into view */
+}
+
+.user-card .btn {
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: none;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.user-card .btn.create {
+  background-color: #e53935; /* red */
+}
+.user-card .btn.create:hover {
+  background-color: #c62828;
+}
+
+.user-card .btn.list {
+  background-color: #42a5f5; /* blue */
+}
+.user-card .btn.list:hover {
+  background-color: #1565c0;
+}
+
+.user-card .btn.patient {
+  background-color: #00c853; /* green */
+}
+.user-card .btn.patient:hover {
+  background-color: #009624;
+}

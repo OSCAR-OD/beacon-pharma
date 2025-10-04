@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./LoginPage.css";
 import "./AdminPanel.css";
 import "./DoctorDetail.css";
-export default function DoctorDetailPage() {
+export default function DoctorProfilePage() {
   const navigate = useNavigate();
   return (
     <div className="doctor-detail-container">
@@ -12,7 +12,7 @@ export default function DoctorDetailPage() {
         <button className="menu-btn">
           <i className="fa-solid fa-bars"></i>
         </button>
-        <h2>Approval &gt; Doctors Details</h2>
+        <h2>User &gt; Doctor Profile</h2>
       </header>
       {/* Sub Header */}
       <div className="sub-header">
@@ -26,7 +26,7 @@ export default function DoctorDetailPage() {
           <img
             // width={100}
             // height={100}
-            src="/assets/images/dr.png"
+            src="/assets/images/drActive.png"
             alt="Doctor"
             className="doctor-photo"
           />
@@ -35,81 +35,77 @@ export default function DoctorDetailPage() {
             <p>
               <strong>Degree:</strong>&nbsp;
               <span className="highlight">MBBS</span>
-            </p>
-            <br />
+            </p><br />
             <p>
               <strong>BMDC Reg No:</strong>&nbsp;
               <span className="highlight">56707</span>
-            </p>
-            <br />
+            </p><br />
             <p>
               <strong>Specialty:</strong>&nbsp;
               <span className="highlight">Orthopedics</span>
-            </p>
-            <br />
+            </p><br />
             <p>
               <strong>Relevant Degree:</strong>&nbsp;
               <span className="highlight">MS, Orthopedics</span>
-            </p>
-            <br />
+            </p><br />
             <p>
               <strong>Sex:</strong>&nbsp;
               <span className="highlight">Male</span>
-            </p>
-            <br />
+            </p><br />
             <p>
               <strong>Age:</strong>&nbsp;
               <span className="highlight">32</span>
-            </p>
-            <br />
+            </p><br />
             <p>
               <strong>Mobile:</strong>&nbsp;
               <span className="highlight">
                 <a href="tel:01711083447" className="link">
-                  01711083447
-                </a>
-              </span>
-            </p>
-            <br />
+                01711083447
+              </a></span>
+            </p><br />
             <p>
               <strong>Email:</strong>&nbsp;
-              <span className="highlight">
-                <a href="mailto:shamim009922@gmail.com" className="link">
-                  shamim009922@gmail.com
-                </a>
+               <span className="highlight">
+              <a href="mailto:shamim009922@gmail.com" className="link">
+                shamim009922@gmail.com
+              </a>
               </span>
-            </p>
-            <br />
+            </p><br />
             <p>
               <strong>Institute:</strong>&nbsp;
-              <span className="highlight">Khilgaon Hospital</span>
-            </p>
-            <br />
+               <span className="highlight">
+              Khilgaon Hospital
+              </span>
+            </p><br />
             <p>
               <strong>Chamber:</strong>&nbsp;
-              <span className="highlight">Khilgaon Taltola</span>
-            </p>
-            <br />
+               <span className="highlight">
+              Khilgaon Taltola
+              </span>
+            </p><br />
             <p>
               <strong>Note/Reference:</strong>&nbsp;
-              <span className="highlight">MIO, Khilgaon</span>
-            </p>
-            <br />
+              <span className="highlight">MIO, Khilgaon
+                </span>
+            </p><br />
             <p>
               <strong>ID:</strong>&nbsp;
               <span className="highlight">23561, 01985551231</span>
-            </p>
-            <br />
-            <div className="action-buttons">
-              <button className="approve-btn">APPROVE</button>
-              <button className="doc-needed-btn">Further Doc Needed</button>
+            </p><br />
+            <div className="dr-profile-action-buttons">
+              <p className="action-txt">if in disable status, then reanable</p>
+               <div className="action-btn-row">
+              <button className="disable-btn">DISABLE</button>
+              <button className="reenable-btn">RE-ENABLE</button>
+              </div>
             </div>
           </div>
         </div>
         {/* Right Section */}
         <div className="doctor-doc">
           <h3>BMDC Reg Document</h3>
-          <div className="doc-placeholder"></div>
+          <div className="doc-placeholder">
+          </div>
         </div>
       </div>
     </div>

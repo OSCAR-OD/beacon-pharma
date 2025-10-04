@@ -10,6 +10,16 @@ const ResetAccountPage = lazy(() => import("./Pages/ResetAccount"));
 const AdminPanelPage = lazy(() => import("./Pages/AdminPage"));
 const ApprovalPage = lazy(() => import("./Pages/ApprovalPage"));
 const DoctorDetailPage = lazy(() => import("./Pages/DoctorDetail"));
+const UserPage = lazy(() => import("./Pages/UserPage"));
+const CreateDoctorPage = lazy(() => import("./Pages/CreateDoctor"));
+const DoctorListPage = lazy(() => import("./Pages/DoctorListPage"));
+const DoctorProfilePage = lazy(() => import("./Pages/DoctorProfile"));
+const SearchPage = lazy(() => import("./Pages/SearchPage"));
+import PatientProfile from "./Pages/PatientProfile";
+import AppointmentPage from "./Pages/AppointmentPage";
+import DoctorStatus from "./Pages/DoctorStatus";
+import PaymentPage from "./Pages/PaymentPage";
+import DisbursementPage from "./Pages/DisbursementPage";
 function App() {
   return (
      <BrowserRouter>
@@ -25,6 +35,17 @@ function App() {
         <Route path="admin-dashboard" element={ <Suspense fallback={<LoadingPage />}> {" "} <AdminPanelPage />{" "} </Suspense> } />
         <Route path="approval-page" element={ <Suspense fallback={<LoadingPage />}> {" "} <ApprovalPage />{" "} </Suspense> } />
         <Route path="doctor-details-page/:id" element={ <Suspense fallback={<LoadingPage />}> {" "} <DoctorDetailPage />{" "} </Suspense> } />
+        <Route path="user" element={ <Suspense fallback={<LoadingPage />}> {" "} <UserPage />{" "} </Suspense> } />
+        <Route path="create-doctor" element={ <Suspense fallback={<LoadingPage />}> {" "} <CreateDoctorPage />{" "} </Suspense> } />
+        <Route path="doctor-list" element={ <Suspense fallback={<LoadingPage />}> {" "} <DoctorListPage />{" "} </Suspense> } />
+        <Route path="doctor-profile/:id" element={ <Suspense fallback={<LoadingPage />}> {" "} <DoctorProfilePage />{" "} </Suspense> } />
+        <Route path="doctor-status/:id" element={ <Suspense fallback={<LoadingPage />}> {" "} <DoctorStatus />{" "} </Suspense> } />
+        <Route path="patient-profile/:id" element={ <Suspense fallback={<LoadingPage />}> {" "} <PatientProfile />{" "} </Suspense> } />
+        <Route path="search" element={ <Suspense fallback={<LoadingPage />}> {" "} <SearchPage />{" "} </Suspense> } />
+        <Route path="payment" element={ <Suspense fallback={<LoadingPage />}> {" "} <PaymentPage />{" "} </Suspense> } />
+        <Route path="disbursement" element={ <Suspense fallback={<LoadingPage />}> {" "} <DisbursementPage />{" "} </Suspense> } />
+        <Route path="appointment" element={ <Suspense fallback={<LoadingPage />}> {" "} <AppointmentPage/>{" "} </Suspense> } />
+        
       </Routes>
     {/* // </ProviderWrapper> */}
     </BrowserRouter>

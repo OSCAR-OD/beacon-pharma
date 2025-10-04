@@ -2,14 +2,14 @@ import React, { useState,  useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./LoginPage.css"; // external css
 export default function LoginPage() {
-  const [email, setEmail] = useState("example@gmail.com");
+  const [email, setEmail] = useState("admin@gmail.com");
   const [password, setPassword] = useState("12345678");
   const [isValid, setIsValid] = useState(false);
    const navigate = useNavigate();
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     //console.log("Email:", email, "Password:", password);
-     if (email === "example@gmail.com" && password === "12345678") {
+     if (email === "admin@gmail.com" && password === "12345678") {
       setIsValid(true); // trigger redirect in useEffect
     } else {
       alert("Invalid email or password!");

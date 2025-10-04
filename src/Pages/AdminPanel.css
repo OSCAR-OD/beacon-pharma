@@ -293,6 +293,8 @@
   color: #0fc1a7;
 }
 
+/* approval-table */
+
 .approval-table {
   width: 90%;
   margin: 2rem auto;
@@ -324,7 +326,7 @@
   color: #0fc1a7;
   font-weight: bold;
 }
-/* Table row striping */
+
 .approval-table tbody tr:nth-child(odd) {
   background: #fff;
 }
