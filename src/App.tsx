@@ -20,6 +20,7 @@ import AppointmentPage from "./Pages/AppointmentPage";
 import DoctorStatus from "./Pages/DoctorStatus";
 import PaymentPage from "./Pages/PaymentPage";
 import DisbursementPage from "./Pages/DisbursementPage";
+import PrescriptionPage from "./Pages/PrescriptionPage";
 function App() {
   return (
      <BrowserRouter>
@@ -43,6 +44,7 @@ function App() {
         <Route path="patient-profile/:id" element={ <Suspense fallback={<LoadingPage />}> {" "} <PatientProfile />{" "} </Suspense> } />
         <Route path="search" element={ <Suspense fallback={<LoadingPage />}> {" "} <SearchPage />{" "} </Suspense> } />
         <Route path="payment" element={ <Suspense fallback={<LoadingPage />}> {" "} <PaymentPage />{" "} </Suspense> } />
+        <Route path="prescription" element={ <Suspense fallback={<LoadingPage />}> {" "} <PrescriptionPage />{" "} </Suspense> } />
         <Route path="disbursement" element={ <Suspense fallback={<LoadingPage />}> {" "} <DisbursementPage />{" "} </Suspense> } />
         <Route path="appointment" element={ <Suspense fallback={<LoadingPage />}> {" "} <AppointmentPage/>{" "} </Suspense> } />
         

@@ -142,7 +142,7 @@ export default function AdminPanel() {
                 <br />
                 Chat & FAQ
               </div>
-              <div className="card">
+              <div className="card" onClick={() => navigate("/prescription")}>
                 <i className="fa-solid fa-file-prescription admin-icon Prescription-icon"></i>
                 <br />
                 <br />
