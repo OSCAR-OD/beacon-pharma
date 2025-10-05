@@ -25,6 +25,7 @@ import DashboardPage from "./Pages/DashboardPage";
 import ChatPage from "./Pages/ChatPage";
 import FaqPage from "./Pages/FaqPage";
 import ChatMessages from "./Pages/ChatMessages";
+import DoctorsProfilePage from "./Pages/DoctorsProfile";
 function App() {
   return (
      <BrowserRouter>
@@ -55,6 +56,8 @@ function App() {
         <Route path="chat" element={ <Suspense fallback={<LoadingPage />}> {" "} <ChatPage />{" "} </Suspense> } />
         <Route path="chat-page" element={ <Suspense fallback={<LoadingPage />}> {" "} <ChatMessages />{" "} </Suspense> } />
         <Route path="faq" element={ <Suspense fallback={<LoadingPage />}> {" "} <FaqPage />{" "} </Suspense> } />
+        <Route path="doctors-profile/:id" element={ <Suspense fallback={<LoadingPage />}> {" "} <DoctorsProfilePage />{" "} </Suspense> } />
+        
       </Routes>
     {/* // </ProviderWrapper> */}
     </BrowserRouter>

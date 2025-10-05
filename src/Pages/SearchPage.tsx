@@ -1,10 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./LoginPage.css";
 import "./AdminPanel.css";
 import "./SearchPage.css";
-export default function SearchPage() {
-  const navigate = useNavigate();
   const doctors = [
     {
       id: 1,
@@ -14,6 +12,7 @@ export default function SearchPage() {
       division: "Dhaka",
       mobile: " 01779717674",
       specialty: "Orthopedics",
+      url: "doctors-profile",
     },
     {
       id: 2,
@@ -23,6 +22,7 @@ export default function SearchPage() {
       division: "Dhaka",
       mobile: " 01779717674",
       specialty: "Orthopedics",
+      url: "doctors-profile",
     },
     {
       id: 3,
@@ -32,6 +32,7 @@ export default function SearchPage() {
       division: "Dhaka",
       mobile: " 01779717674",
       specialty: "Orthopedics",
+      url: "doctors-profile",
     },
     {
       id: 4,
@@ -41,6 +42,7 @@ export default function SearchPage() {
       division: "Dhaka",
       mobile: " 01779717674",
       specialty: "Orthopedics",
+      url: "doctors-profile",
     },
     {
       id: 5,
@@ -50,6 +52,7 @@ export default function SearchPage() {
       division: "Dhaka",
       mobile: " 01779717674",
       specialty: "Orthopedics",
+      url: "doctors-profile",
     },
     {
       id: 6,
@@ -59,6 +62,7 @@ export default function SearchPage() {
       division: "Dhaka",
       mobile: " 01779717674",
       specialty: "Orthopedics",
+      url: "doctors-profile",
     },
     {
       id: 7,
@@ -68,6 +72,7 @@ export default function SearchPage() {
       division: "Dhaka",
       mobile: " 01779717674",
       specialty: "Orthopedics",
+      url: "doctors-profile",
     },
     {
       id: 8,
@@ -77,8 +82,36 @@ export default function SearchPage() {
       division: "Dhaka",
       mobile: " 01779717674",
       specialty: "Orthopedics",
+      url: "doctors-profile",
     },
   ];
+  const patients = [
+      {
+      id: 1,
+      date: "30/June/2020",
+      name: "Ramim Hasan",
+      designation: "Job Holder",
+      division: "Dhaka",
+      mobile: " 01779717674",
+      specialty: "Job",
+      url: "patient-profile"
+    },
+    {
+      id: 2,
+      date: "30/June/2020",
+      name: "Ramim Hasan",
+      designation: "Job Holder",
+      division: "Dhaka",
+      mobile: " 01779717674",
+      specialty: "Job",
+      url: "patient-profile"
+    },
+]
+export default function SearchPage() {
+  const navigate = useNavigate();
+  const [activeChat, setActiveChat] = useState<"doctor" | "patient">("doctor");
+  const currentMessages =
+    activeChat === "doctor" ? doctors : patients;
 
   return (
     <div className="approval-page">
@@ -96,8 +129,19 @@ export default function SearchPage() {
             <i className="fa-solid fa-arrow-left"></i>
           </button>
           <div className="role-btns">
-            <button className="doctor-btn">DOCTOR</button>
-            <button className="patient-btn">PATIENT</button>
+            <button 
+            className={`doctor-btn ${
+              activeChat === "doctor" ? "active-btn" : ""
+            }`}
+            onClick={() => setActiveChat("doctor")}
+          >
+            DOCTOR</button>
+            <button className={`patient-btn ${
+              activeChat === "patient" ? "active-btn" : ""
+            }`}
+            onClick={() => setActiveChat("patient")}
+          >
+            PATIENT</button>
           </div>
         </div>
         <div className="search-container">
@@ -124,10 +168,10 @@ export default function SearchPage() {
           </tr>
         </thead>
         <tbody>
-          {doctors.map((doc) => (
+          {currentMessages.map((doc) => (
             <tr
               key={doc.id}
-              onClick={() => navigate(`/patient-profile/${doc.id}`)}
+              onClick={() => navigate(`/${doc.url}/${doc.id}`)}
               style={{ cursor: "pointer" }}
             >
               <td>{doc.date}</td>
