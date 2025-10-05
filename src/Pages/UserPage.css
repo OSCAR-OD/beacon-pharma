@@ -39,3 +39,7 @@
 .user-card .btn.patient:hover {
   background-color: #009624;
 }
+/* Chat page */
+.chat-btn{
+  padding: 0.6rem 2.5rem !important;
+}

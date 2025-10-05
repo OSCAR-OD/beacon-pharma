@@ -1,16 +1,16 @@
 /* Page Layout */
-.history-card p{
-      display: inline-flex;
-    align-items: center;
-    margin: 0 10px 0 0;
-    margin-bottom: 8px;
+.history-card p {
+  display: inline-flex;
+  align-items: center;
+  margin: 0 10px 0 0;
+  margin-bottom: 8px;
 }
 
-.profile-card p{
-      display: inline-flex;
-    align-items: center;
-    margin: 0 10px 0 0;
-    margin-bottom: 8px;
+.profile-card p {
+  display: inline-flex;
+  align-items: center;
+  margin: 0 10px 0 0;
+  margin-bottom: 8px;
 }
 
 .profile-page {
@@ -125,4 +125,176 @@
   color: #0fc1a7;
   font-weight: 600;
   cursor: pointer;
+}
+/* Dashboard page */
+.appointment-info h2 {
+  text-align: center;
+  margin: 0 0 0.5rem;
+  font-size: 1.5rem;
+  color: #253159;
+}
+
+.appointment-container {
+  margin: 2rem auto;
+  padding: 1rem;
+  gap: 2vw;
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 90vw;
+}
+
+.appointment-card {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  background: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  justify-content: center;
+}
+
+.appointment-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.appointment-btn {
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.appointment-btn-clk {
+  background: #0fc1a7;
+  padding: 0.5rem 1.2rem;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+  margin-bottom: 8px;
+}
+/* Faq Page */
+.faq-container {
+  max-width: 80vw;
+  margin: 2rem auto;
+  padding: 1rem;
+  height: 80vh;
+  overflow-y: auto;
+}
+.faq-qstn {
+  color: #0fc1a7 !important;
+}
+/* Chat message page */
+.m-container {
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; */
+}
+.message-container {
+  max-width: 60vw;
+  margin: 1rem auto;
+  padding: 0.5rem;
+  height: 65vh;
+  overflow-y: auto;
+}
+
+.message-card {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: white;
+  padding: 0.8rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  margin: 2px 0px;
+}
+.message-profile-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.message-profile-img-wrapper {
+  position: relative;
+  display: inline-block;
+}
+.m-active-status {
+  position: absolute;
+  bottom: 2px; /* You can change to top: 8px; if you want top-right */
+  right: 1px;
+  width: 12px;
+  height: 12px;
+  background-color: #2ecc71; /* Green circle */
+  border: 2px solid #fff; /* White border for clean look */
+  border-radius: 50%;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+}
+.message-info p {
+  margin: 0.2rem 0;
+  color: #555;
+  font-size: 16px;
+}
+
+/* message info */
+.message-info {
+  flex: 1;
+  margin-left: 12px;
+}
+
+/* time & count */
+.message-time {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.msg-time-text {
+  font-size: 14px;
+  color: #555;
+}
+
+.msg-count {
+  background-color: #0fc1a7;
+  color: white;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.message-btns {
+  display: flex;
+  gap: 0.6rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+.message-btn {
+  display: flex;
+  background-color: #46ebd3;
+  border-radius: 18px;
+  /* padding: 0.5rem 1.2rem; */
+}
+.dr-btn {
+  /* background: #00cbff; */
+  color: #fff;
+  padding: 0.5rem 1.2rem;
+  border-radius: 18px;
+}
+.pt-btn {
+  /* background: #00eb9b; */
+  color: #fff;
+  padding: 0.5rem 1.2rem;
+  border-radius: 18px;
+}
+.active-btn {
+  background-color: #0fc1a7 !important;
+  color: white !important;
+  border-color: #0fc1a7 !important;
 }

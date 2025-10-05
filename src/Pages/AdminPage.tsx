@@ -136,7 +136,7 @@ export default function AdminPanel() {
                 <br />
                 Communication Modul
               </div>
-              <div className="card">
+              <div className="card" onClick={() => navigate("/chat")}>
                 <i className="fa-solid fa-envelope admin-icon Chat-icon"></i>
                 <br />
                 <br />
@@ -148,7 +148,7 @@ export default function AdminPanel() {
                 <br />
                 Prescription
               </div>
-              <div className="card">
+              <div className="card"  onClick={() => navigate("/dashboard")}>
                 <i className="fa-solid fa-grip admin-icon Dashboard-icon"></i>
                 <br />
                 <br />

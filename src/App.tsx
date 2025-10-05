@@ -21,6 +21,10 @@ import DoctorStatus from "./Pages/DoctorStatus";
 import PaymentPage from "./Pages/PaymentPage";
 import DisbursementPage from "./Pages/DisbursementPage";
 import PrescriptionPage from "./Pages/PrescriptionPage";
+import DashboardPage from "./Pages/DashboardPage";
+import ChatPage from "./Pages/ChatPage";
+import FaqPage from "./Pages/FaqPage";
+import ChatMessages from "./Pages/ChatMessages";
 function App() {
   return (
      <BrowserRouter>
@@ -47,7 +51,10 @@ function App() {
         <Route path="prescription" element={ <Suspense fallback={<LoadingPage />}> {" "} <PrescriptionPage />{" "} </Suspense> } />
         <Route path="disbursement" element={ <Suspense fallback={<LoadingPage />}> {" "} <DisbursementPage />{" "} </Suspense> } />
         <Route path="appointment" element={ <Suspense fallback={<LoadingPage />}> {" "} <AppointmentPage/>{" "} </Suspense> } />
-        
+        <Route path="dashboard" element={ <Suspense fallback={<LoadingPage />}> {" "} <DashboardPage />{" "} </Suspense> } />
+        <Route path="chat" element={ <Suspense fallback={<LoadingPage />}> {" "} <ChatPage />{" "} </Suspense> } />
+        <Route path="chat-page" element={ <Suspense fallback={<LoadingPage />}> {" "} <ChatMessages />{" "} </Suspense> } />
+        <Route path="faq" element={ <Suspense fallback={<LoadingPage />}> {" "} <FaqPage />{" "} </Suspense> } />
       </Routes>
     {/* // </ProviderWrapper> */}
     </BrowserRouter>
