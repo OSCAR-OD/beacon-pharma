@@ -876,6 +876,9 @@ footer .login-footer {
 /**
  * responsive larger than 575px screen
  */
+.reset-txt{
+cursor: pointer;
+}
 
 @media (min-width: 575px) {
   /**

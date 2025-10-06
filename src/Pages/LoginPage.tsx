@@ -62,7 +62,7 @@ export default function LoginPage() {
                 </button>
               </form>
               <br />
-              <h5>Forget Password? Reset</h5>
+              <h5 className="reset-txt" onClick={() => navigate("/reset-password")}>Forget Password? Reset</h5>
             </div>
             <footer>
               <br />
