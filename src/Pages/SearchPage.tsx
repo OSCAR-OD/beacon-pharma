@@ -1,117 +1,51 @@
-import React, { useState } from "react";
+import //React, 
+{ useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./LoginPage.css";
 import "./AdminPanel.css";
 import "./SearchPage.css";
-  const doctors = [
-    {
-      id: 1,
-      date: "30/June/2020",
-      name: "Dr. Shamim Shakil",
-      designation: "MBBS",
-      division: "Dhaka",
-      mobile: " 01779717674",
-      specialty: "Orthopedics",
-      url: "doctors-profile",
-    },
-    {
-      id: 2,
-      date: "30/June/2020",
-      name: "Dr. Shamim Shakil",
-      designation: "MBBS",
-      division: "Dhaka",
-      mobile: " 01779717674",
-      specialty: "Orthopedics",
-      url: "doctors-profile",
-    },
-    {
-      id: 3,
-      date: "30/June/2020",
-      name: "Dr. Shamim Shakil",
-      designation: "MBBS",
-      division: "Dhaka",
-      mobile: " 01779717674",
-      specialty: "Orthopedics",
-      url: "doctors-profile",
-    },
-    {
-      id: 4,
-      date: "30/June/2020",
-      name: "Dr. Shamim Shakil",
-      designation: "MBBS",
-      division: "Dhaka",
-      mobile: " 01779717674",
-      specialty: "Orthopedics",
-      url: "doctors-profile",
-    },
-    {
-      id: 5,
-      date: "30/June/2020",
-      name: "Dr. Shamim Shakil",
-      designation: "MBBS",
-      division: "Dhaka",
-      mobile: " 01779717674",
-      specialty: "Orthopedics",
-      url: "doctors-profile",
-    },
-    {
-      id: 6,
-      date: "30/June/2020",
-      name: "Dr. Shamim Shakil",
-      designation: "MBBS",
-      division: "Dhaka",
-      mobile: " 01779717674",
-      specialty: "Orthopedics",
-      url: "doctors-profile",
-    },
-    {
-      id: 7,
-      date: "30/June/2020",
-      name: "Dr. Shamim Shakil",
-      designation: "MBBS",
-      division: "Dhaka",
-      mobile: " 01779717674",
-      specialty: "Orthopedics",
-      url: "doctors-profile",
-    },
-    {
-      id: 8,
-      date: "30/June/2020",
-      name: "Dr. Shamim Shakil",
-      designation: "MBBS",
-      division: "Dhaka",
-      mobile: " 01779717674",
-      specialty: "Orthopedics",
-      url: "doctors-profile",
-    },
-  ];
-  const patients = [
-      {
-      id: 1,
-      date: "30/June/2020",
-      name: "Ramim Hasan",
-      designation: "Job Holder",
-      division: "Dhaka",
-      mobile: " 01779717674",
-      specialty: "Job",
-      url: "patient-profile"
-    },
-    {
-      id: 2,
-      date: "30/June/2020",
-      name: "Ramim Hasan",
-      designation: "Job Holder",
-      division: "Dhaka",
-      mobile: " 01779717674",
-      specialty: "Job",
-      url: "patient-profile"
-    },
-]
+import axiosInstance from "../hooks/axiosInstance";
+
 export default function SearchPage() {
   const navigate = useNavigate();
+  const [doctors, setDoctors] = useState<any[]>([]);
+  const [patients, setPatients] = useState<any[]>([]);
+  const [loading, setLoading] = useState(false);
+  const getDoctors = async () => {
+    try {
+      setLoading(true);
+      const response = await axiosInstance.get("/queries/getDoctors"); // <--- your API endpoint
+      console.log("responsedoctors", response.data);
+      setDoctors(response.data || []); // assuming response: { success: true, data: [...] }
+      //console.log("doctors", doctors);
+    } catch (error) {
+      console.error("Error fetching doctors:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+  const getPatients = async () => {
+    try {
+      setLoading(true);
+      const response = await axiosInstance.get("/queries/getPatients");
+      setPatients(response.data?.data || response.data || []);
+    } catch (error) {
+      console.error("Error fetching patients:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Fetch on component mount
+  useEffect(() => {
+    getDoctors();
+    getPatients();
+  }, []);
+
   const [activeChat, setActiveChat] = useState<"doctor" | "patient">("doctor");
-  const currentMessages =
-    activeChat === "doctor" ? doctors : patients;
+  const currentMessages = activeChat === "doctor" ? doctors : patients;
+
+   if (loading) return <p style={{ textAlign: "center", marginTop: "20px" }}>Loading...</p>;
 
   return (
     <div className="approval-page">
@@ -129,19 +63,22 @@ export default function SearchPage() {
             <i className="fa-solid fa-arrow-left"></i>
           </button>
           <div className="role-btns">
-            <button 
-            className={`doctor-btn ${
-              activeChat === "doctor" ? "active-btn" : ""
-            }`}
-            onClick={() => setActiveChat("doctor")}
-          >
-            DOCTOR</button>
-            <button className={`patient-btn ${
-              activeChat === "patient" ? "active-btn" : ""
-            }`}
-            onClick={() => setActiveChat("patient")}
-          >
-            PATIENT</button>
+            <button
+              className={`doctor-btn ${
+                activeChat === "doctor" ? "active-btn" : ""
+              }`}
+              onClick={() => setActiveChat("doctor")}
+            >
+              DOCTOR
+            </button>
+            <button
+              className={`patient-btn ${
+                activeChat === "patient" ? "active-btn" : ""
+              }`}
+              onClick={() => setActiveChat("patient")}
+            >
+              PATIENT
+            </button>
           </div>
         </div>
         <div className="search-container">
@@ -160,7 +97,7 @@ export default function SearchPage() {
         <thead>
           <tr>
             <th>Date</th>
-            <th>Doctor Name</th>
+            <th>{activeChat === "doctor" ? "Doctor Name" : "Patient Name"}</th>
             <th>Designation</th>
             <th>Division</th>
             <th>Mobile</th>
@@ -171,7 +108,15 @@ export default function SearchPage() {
           {currentMessages.map((doc) => (
             <tr
               key={doc.id}
-              onClick={() => navigate(`/${doc.url}/${doc.id}`)}
+              onClick={() =>
+                navigate(
+                  `/${
+                    activeChat === "doctor"
+                      ? "doctor-profile"
+                      : "patient-profile"
+                  }/${doc._id}`
+                )
+              }
               style={{ cursor: "pointer" }}
             >
               <td>{doc.date}</td>

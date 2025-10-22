@@ -1,22 +1,45 @@
-import React, { useState,  useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./LoginPage.css"; // external css
+import axiosInstance from "../hooks/axiosInstance";
 export default function LoginPage() {
   const [email, setEmail] = useState("admin@gmail.com");
   const [password, setPassword] = useState("12345678");
-  const [isValid, setIsValid] = useState(false);
-   const navigate = useNavigate();
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const [isValid] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
+  const navigate = useNavigate();
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    //console.log("Email:", email, "Password:", password);
-     if (email === "admin@gmail.com" && password === "12345678") {
-      setIsValid(true); // trigger redirect in useEffect
-    } else {
-      alert("Invalid email or password!");
+    //console.log("email:", email, "Password:", password);
+    setLoading(true);
+    setErrorMsg("");
+    try {
+      const response = await axiosInstance.post("auth/login/", {
+        email,
+        password,
+      });
+      const { accessToken } = response.data;
+      if (accessToken) {
+        //console.log("token", accessToken);
+        localStorage.setItem("accessToken", accessToken);
+        navigate("/admin-dashboard");
+      } else {
+        setErrorMsg("Login failed: No token received.");
+      }
+    } catch (error: any) {
+      console.error("Login error:", error);
+      if (error.response) {
+        setErrorMsg(error.response.data.message || "Invalid credentials");
+      } else {
+        setErrorMsg("Network error. Please try again later.");
+      }
+    } finally {
+      setLoading(false);
     }
   };
 
-    useEffect(() => {
+  useEffect(() => {
     if (isValid) {
       navigate("/admin-dashboard"); // redirect after successful login
     }
@@ -57,18 +80,25 @@ export default function LoginPage() {
                   }
                   required
                 />
-                <button type="submit" className="btn-submit">
-                  LOGIN
+                <button type="submit" className="btn-submit" disabled={loading}>
+                  {loading ? "Logging in..." : "LOGIN"}
                 </button>
+                {/* <br /> */}
+                {errorMsg && <p className="error-msg">{errorMsg}</p>}
               </form>
               <br />
-              <h5 className="reset-txt" onClick={() => navigate("/reset-password")}>Forget Password? Reset</h5>
+              <h5
+                className="reset-txt"
+                onClick={() => navigate("/reset-password")}
+              >
+                Forget Password? Reset
+              </h5>
             </div>
             <footer>
               <br />
               <p>
                 <span className="login-footer">Beacon Patient Care</span> <br />
-                 Beacon Pharmaceuticals Limited
+                Beacon Pharmaceuticals Limited
               </p>
             </footer>
           </div>

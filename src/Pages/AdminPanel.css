@@ -339,3 +339,105 @@
 .approval-table tbody tr:nth-child(even) .status.pending {
   color: #0fc1a7;
 }
+/* header new code */
+
+.navbar {
+  /* position: sticky; */
+  top: 0;
+  z-index: 100;
+  width: 4%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+/* Inner wrapper */
+.navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 10px;
+  max-width: 30px;
+  margin: 0 auto;
+}
+
+/* Left section (Logo) */
+.navbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-logo {
+  height: 40px;
+  width: auto;
+  cursor: pointer;
+}
+
+/* Center section (Search) */
+.navbar-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.navbar-search {
+  width: 60%;
+  max-width: 400px;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.navbar-search:focus {
+  border-color: #007bff;
+}
+
+/* Right section (User Info) */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.navbar-user {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.navbar-avatar {
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+}
+
+.navbar-username {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+
+/* --------------- Responsive --------------- */
+@media (max-width: 1024px) {
+  .navbar-search {
+    width: 50%;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .navbar-center {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .navbar-search {
+    width: 90%;
+  }
+}

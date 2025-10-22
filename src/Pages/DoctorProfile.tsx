@@ -1,10 +1,38 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import //React, 
+{ useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import "./LoginPage.css";
 import "./AdminPanel.css";
 import "./DoctorDetail.css";
+import axiosInstance from "../hooks/axiosInstance";
 export default function DoctorProfilePage() {
   const navigate = useNavigate();
+   const { id } = useParams();
+     const [doctor, setDoctor] = useState<any>(null);
+     const [loading, setLoading] = useState(false);
+     const getDoctorById = async () => {
+    try {
+      setLoading(true);
+      const response = await axiosInstance.get(`/queries/getDoctorById/${id}`);
+      setDoctor(response.data?.data || response.data);
+    } catch (error) {
+      console.error("Error fetching doctor data:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (id) getDoctorById();
+  }, [id]);
+ if (loading) {
+    return <p style={{ textAlign: "center" }}>Loading doctor details...</p>;
+  }
+
+  if (!doctor) {
+    return <p style={{ textAlign: "center" }}>No doctor data found.</p>;
+  }
+console.log("doctor", doctor);
   return (
     <div className="doctor-detail-container">
       {/* Header */}
@@ -23,74 +51,109 @@ export default function DoctorProfilePage() {
       <div className="doctor-detail-card">
         {/* Left Section */}
         <div className="doctor-info">
-          <img
-            // width={100}
-            // height={100}
-            src="/assets/images/drActive.png"
-            alt="Doctor"
-            className="doctor-photo"
-          />
-          <div>
-            <h2 className="doctor-name">Dr. Shamim Shakil</h2>
+          <div className="profile-img-wrapper">
+            <img
+              // src="/assets/images/doctor.png"
+               src={doctor.img}
+               alt={doctor.name}
+              className="doc-profile-img"
+            />
+            <span className="active-status"></span>
+          </div>
+          <div className="right-side">
+            <h2 className="doctor-name">
+              {doctor.name}
+            {/* Dr. Shamim Shakil */}
+              </h2>
             <p>
               <strong>Degree:</strong>&nbsp;
-              <span className="highlight">MBBS</span>
+              <span className="highlight">
+                {doctor.designation}
+                {/* MBBS */}
+                </span>
             </p><br />
             <p>
-              <strong>BMDC Reg No:</strong>&nbsp;
-              <span className="highlight">56707</span>
+              <strong>
+                BMDC Reg No:
+                </strong>&nbsp;
+              <span className="highlight">
+                {doctor.BMDCRegNo}
+                </span>
             </p><br />
             <p>
-              <strong>Specialty:</strong>&nbsp;
-              <span className="highlight">Orthopedics</span>
+              <strong>
+                Specialty:
+                </strong>&nbsp;
+              <span className="highlight">
+                {doctor.specialty}
+                {/* Orthopedics */}
+                </span>
             </p><br />
             <p>
               <strong>Relevant Degree:</strong>&nbsp;
-              <span className="highlight">MS, Orthopedics</span>
+              <span className="highlight">
+                 {doctor.relevantDegree}
+                {/* MS, Orthopedics */}
+                </span>
             </p><br />
             <p>
               <strong>Sex:</strong>&nbsp;
-              <span className="highlight">Male</span>
+              <span className="highlight">
+                 {doctor.sex}
+                {/* Male */}
+                </span>
             </p><br />
             <p>
               <strong>Age:</strong>&nbsp;
-              <span className="highlight">32</span>
+              <span className="highlight">
+                {doctor.age}
+                {/* 32 */}
+                </span>
             </p><br />
             <p>
               <strong>Mobile:</strong>&nbsp;
               <span className="highlight">
                 <a href="tel:01711083447" className="link">
-                01711083447
+                  {doctor.mobile}
+                {/* 01711083447 */}
               </a></span>
             </p><br />
             <p>
               <strong>Email:</strong>&nbsp;
                <span className="highlight">
               <a href="mailto:shamim009922@gmail.com" className="link">
-                shamim009922@gmail.com
+                {doctor.email}
+                {/* shamim009922@gmail.com */}
               </a>
               </span>
             </p><br />
             <p>
               <strong>Institute:</strong>&nbsp;
                <span className="highlight">
-              Khilgaon Hospital
+                 {doctor.institute}
+              {/* Khilgaon Hospital */}
               </span>
             </p><br />
             <p>
               <strong>Chamber:</strong>&nbsp;
                <span className="highlight">
-              Khilgaon Taltola
+                 {doctor.chamber}
+              {/* Khilgaon Taltola */}
               </span>
             </p><br />
             <p>
               <strong>Note/Reference:</strong>&nbsp;
-              <span className="highlight">MIO, Khilgaon
+              <span className="highlight">
+                 {doctor.reference}
+                {/* MIO, Khilgaon */}
                 </span>
             </p><br />
             <p>
               <strong>ID:</strong>&nbsp;
-              <span className="highlight">23561, 01985551231</span>
+              <span className="highlight">
+                 {doctor.docID}
+                {/* 23561, 01985551231 */}
+                </span>
             </p><br />
             <div className="dr-profile-action-buttons">
               <p className="action-txt">if in disable status, then reanable</p>

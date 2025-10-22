@@ -1,48 +1,44 @@
-import React from "react";
+import //React, 
+{ useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./LoginPage.css";
 import "./AdminPanel.css";
 import "./DoctorListPage.css";
+import axiosInstance from "../hooks/axiosInstance";
+//getDoctors
+
+interface Doctor {
+  _id: number;
+  date: string;
+  name: string;
+  designation: string;
+  division: string;
+  mobile: string;
+  specialty: string;
+}
 export default function DoctorListPage() {
   const navigate = useNavigate();
-  const doctors = [
-    {
-      id: 1,
-      date: "30/June/2020",
-      name: "Dr. Shamim Shakil",
-      designation: "MBBS",
-      division: "Dhaka",
-      mobile: " 01779717674",
-      specialty: "Orthopedics",
-    },
-    {
-      id: 2,
-      date: "30/June/2020",
-      name: "Dr. Shamim Shakil",
-      designation: "MBBS",
-      division: "Dhaka",
-      mobile: " 01779717674",
-      specialty: "Orthopedics",
-    },
-    {
-      id: 3,
-      date: "30/June/2020",
-      name: "Dr. Shamim Shakil",
-      designation: "MBBS",
-      division: "Dhaka",
-      mobile: " 01779717674",
-      specialty: "Orthopedics",
-    },
-    {
-      id: 4,
-      date: "30/June/2020",
-      name: "Dr. Shamim Shakil",
-      designation: "MBBS",
-      division: "Dhaka",
-      mobile: " 01779717674",
-      specialty: "Orthopedics",
-    },
-  ];
+    const [doctors, setDoctors] = useState<Doctor[]>([]);
+      const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+   useEffect(() => {
+    const getDoctors = async () => {
+      try {
+        const response = await axiosInstance.get("/queries/getDoctors"); // change this to your endpoint
+        setDoctors(response.data);
+        setLoading(false);
+      } catch (err: any) {
+        console.error("Error fetching doctors:", err);
+        setError("Failed to load doctors");
+        setLoading(false);
+      }
+    };
+
+    getDoctors();
+  }, []);
+
+  if (loading) return <p>Loading doctors...</p>;
+  if (error) return <p>{error}</p>;
 
   return (
     <div className="approval-page">
@@ -91,8 +87,8 @@ export default function DoctorListPage() {
         <tbody>
           {doctors.map((doc) => (
             <tr
-              key={doc.id}
-              onClick={() => navigate(`/doctor-profile/${doc.id}`)}
+              key={doc._id}
+              onClick={() => navigate(`/doctor-profile/${doc._id}`)}
               style={{ cursor: "pointer" }}
             >
               <td>{doc.date}</td>
