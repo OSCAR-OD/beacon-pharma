@@ -27,6 +27,7 @@ import FaqPage from "./Pages/FaqPage";
 import ChatMessages from "./Pages/ChatMessages";
 import DoctorsProfilePage from "./Pages/DoctorsProfile";
 import PatientListPage from "./Pages/PatientListPage";
+import RolePage from "./Pages/RolePage";
 function App() {
   return (
      <BrowserRouter>
@@ -59,6 +60,7 @@ function App() {
         <Route path="faq" element={ <Suspense fallback={<LoadingPage />}> {" "} <FaqPage />{" "} </Suspense> } />
         <Route path="doctors-profile/:id" element={ <Suspense fallback={<LoadingPage />}> {" "} <DoctorsProfilePage />{" "} </Suspense> } />
         <Route path="patient-list" element={ <Suspense fallback={<LoadingPage />}> {" "} <PatientListPage />{" "} </Suspense> } />
+        <Route path="role-management" element={ <Suspense fallback={<LoadingPage />}> {" "} <RolePage />{" "} </Suspense> } />
         
       </Routes>
     {/* // </ProviderWrapper> */}

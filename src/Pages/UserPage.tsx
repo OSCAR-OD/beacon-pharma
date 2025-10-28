@@ -1,35 +1,55 @@
-//import React from "react";
+import {
+  //React
+  useState,
+} from "react";
 import { useNavigate } from "react-router-dom";
 import "./LoginPage.css";
 import "./AdminPanel.css";
 import "./UserPage.css";
+import Sidebar from "../Components/Sidebar/Sidebar";
 export default function UserPage() {
   const navigate = useNavigate();
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   return (
     <div className="user-container">
-      {/* Header */}
-      <header className="approval-header">
-        <button className="menu-btn">
-          <i className="fa-solid fa-bars"></i>
-        </button>
-        <h2>User</h2>
-      </header>
-      {/* Sub Header */}
-      <div className="sub-header">
-        <button className="back-btn" onClick={() => navigate(-1)}>
-          <i className="fa-solid fa-arrow-left"></i>
-        </button>
-      </div>
-      <div className="user-card">
-          <button className="btn create" onClick={() => navigate("/create-doctor")}>
-          Create Doctor
-        </button>
-        <button className="btn list" onClick={() => navigate("/doctor-list")}>
-          Doctor List
-        </button>
-        <button className="btn patient" onClick={() => navigate("/patient-list")}>
-          Patient List
-        </button>
+      <Sidebar
+        isOpen={isSidebarOpen}
+        toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
+      />
+      <div className="container-body">
+        {/* Header */}
+        <header className="approval-header">
+          <button 
+          className="menu-btn"
+           onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+           >
+            <i className="fa-solid fa-bars"></i>
+          </button>
+          <h2>User</h2>
+        </header>
+        {/* Sub Header */}
+        <div className="sub-header">
+          <button className="back-btn" onClick={() => navigate(-1)}>
+            <i className="fa-solid fa-arrow-left"></i>
+          </button>
+        </div>
+        <div className="user-card">
+          <button
+            className="btn create"
+            onClick={() => navigate("/create-doctor")}
+          >
+            Create Doctor
+          </button>
+          <button className="btn list" onClick={() => navigate("/doctor-list")}>
+            Doctor List
+          </button>
+          <button
+            className="btn patient"
+            onClick={() => navigate("/patient-list")}
+          >
+            Patient List
+          </button>
+        </div>
       </div>
     </div>
   );

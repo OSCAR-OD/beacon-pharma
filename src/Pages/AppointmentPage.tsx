@@ -1,90 +1,70 @@
-//import React from "react";
+import //React, 
+{ useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./LoginPage.css";
 import "./AdminPanel.css";
 import "./SearchPage.css";
+import axiosInstance from "../hooks/axiosInstance";
+import Sidebar from "../Components/Sidebar/Sidebar";
 export default function AppointmentPage() {
   const navigate = useNavigate();
-  const doctors = [
-    {
-      id: 1,
-      date: "30/June | 2:28PM",
-      name: "Dr. Shamim Shakil",
-      appointmentId: "  2364565",
-      patient: "Tanvir Hasan",
-      mobile: " 01779717674",
-      specialty: "Orthopedics",
-    },
-    {
-      id: 2,
-      date: "30/June | 2:28PM",
-      name: "Dr. Shamim Shakil",
-      appointmentId: "  2364565",
-      patient: "Tanvir Hasan",
-      mobile: " 01779717674",
-      specialty: "Orthopedics",
-    },
-    {
-      id: 3,
-      date: "30/June | 2:28PM",
-      name: "Dr. Shamim Shakil",
-      appointmentId: "  2364565",
-      patient: "Tanvir Hasan",
-      mobile: " 01779717674",
-      specialty: "Orthopedics",
-    },
-    {
-      id: 4,
-      date: "30/June | 2:28PM",
-      name: "Dr. Shamim Shakil",
-      appointmentId: "  2364565",
-      patient: "Tanvir Hasan",
-      mobile: " 01779717674",
-      specialty: "Orthopedics",
-    },
-    {
-      id: 5,
-      date: "30/June | 2:28PM",
-      name: "Dr. Shamim Shakil",
-      appointmentId: "  2364565",
-      patient: "Tanvir Hasan",
-      mobile: " 01779717674",
-      specialty: "Orthopedics",
-    },
-    {
-      id: 6,
-      date: "30/June | 2:28PM",
-      name: "Dr. Shamim Shakil",
-      appointmentId: "  2364565",
-      patient: "Tanvir Hasan",
-      mobile: " 01779717674",
-      specialty: "Orthopedics",
-    },
-    {
-      id: 7,
-      date: "30/June | 2:28PM",
-      name: "Dr. Shamim Shakil",
-      appointmentId: "  2364565",
-      patient: "Tanvir Hasan",
-      mobile: " 01779717674",
-      specialty: "Orthopedics",
-    },
-    {
-      id: 8,
-      date: "30/June | 2:28PM",
-      name: "Dr. Shamim Shakil",
-      appointmentId: "  2364565",
-      patient: "Tanvir Hasan",
-      mobile: " 01779717674",
-      specialty: "Orthopedics",
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    const [appointments, setAppointments] = useState([]);
+  const [setLoading] = useState(true);
+    const [searchTerm] = useState("");
+useEffect(() => {
+    const fetchAppointments = async () => {
+      try {
+        const response = await axiosInstance.get("/queries/getAppointmentData");
+        setAppointments(response.data || []);
+        //console.log("appointments", response.data);
+      } catch (error) {
+        console.error("Error fetching appointment data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchAppointments();
+  }, []);
+   const formatDateTime = (dateString, timeString) => {
+    try {
+      const dateObj = new Date(`${dateString} ${timeString}`);
+      if (isNaN(dateObj)) return `${dateString} | ${timeString}`;
+
+      const day = dateObj.getDate();
+      const month = dateObj.toLocaleString("default", { month: "long" });
+      const hours = dateObj.getHours();
+      const minutes = dateObj.getMinutes();
+      const ampm = hours >= 12 ? "PM" : "AM";
+      const formattedHour = hours % 12 || 12;
+      const formattedMinutes = minutes.toString().padStart(2, "0");
+
+      return `${day}/${month} | ${formattedHour}:${formattedMinutes}${ampm}`;
+    } catch {
+      return `${dateString} | ${timeString}`;
     }
-  ];
+  };
+   // ✅ Filter by search
+  const filteredAppointments = appointments.filter((appt) =>
+    [appt.name, appt.mobile, appt.specialty, appt.patient]
+      .join(" ")
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase())
+  );
 
   return (
     <div className="approval-page">
+       <Sidebar
+        isOpen={isSidebarOpen}
+        toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
+      />
+      <div className="container-body">
       {/* Header */}
       <header className="approval-header">
-        <button className="menu-btn">
+        <button className="menu-btn"
+          onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+          >
           <i className="fa-solid fa-bars"></i>
         </button>
         <h2>Appointment</h2>
@@ -125,15 +105,15 @@ export default function AppointmentPage() {
           </tr>
         </thead>
         <tbody>
-          {doctors.map((doc) => (
+             {filteredAppointments.map((doc) => (
             <tr
-              key={doc.id}
-              onClick={() => navigate(`/doctor-status/${doc.id}`)}
+              key={doc._id}
+              onClick={() => navigate(`/doctor-status/${doc._id}`)}
               style={{ cursor: "pointer" }}
             >
-              <td>{doc.date}</td>
-              <td>{doc.name}</td>
-              <td>{doc.appointmentId}</td>
+             <td>{formatDateTime(doc.date, doc.time)}</td>
+              <td>{doc.doctorName}</td>
+              <td>{doc.appointmentID}</td>
               <td>{doc.patient}</td>
               <td>{doc.mobile}</td>
               <td>{doc.specialty}</td>
@@ -141,6 +121,7 @@ export default function AppointmentPage() {
           ))}
         </tbody>
       </table>
+      </div>
     </div>
   );
 }
