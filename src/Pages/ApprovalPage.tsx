@@ -9,6 +9,7 @@ import Sidebar from "../Components/Sidebar/Sidebar";
 export default function ApprovalPage() {
   const navigate = useNavigate();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    const [filterStatus, setFilterStatus] = useState<string | null>("PENDING");
   const doctors = [
     {
       id: 1,
@@ -42,7 +43,20 @@ export default function ApprovalPage() {
       designation: "MBBS",
       status: "PENDING",
     },
+        {
+      id: 5,
+      date: "30/June/2020",
+      time: "02:10PM",
+      name: "Dr. Shamim Shakil",
+      designation: "MBBS",
+      status: "APPROVED",
+    },
   ];
+
+    // Filter the doctors based on selected status
+  const filteredDoctors = filterStatus
+    ? doctors.filter((doc) => doc.status === filterStatus)
+    : doctors;
 
   return (
     <div className="approval-page">
@@ -83,8 +97,12 @@ export default function ApprovalPage() {
         </div>
         {/* Action Buttons */}
         <div className="approval-actions">
-          <button className="btn-approved">APPROVED</button>
-          <button className="btn-doc-needed">Further Doc Needed</button>
+          <button className="btn-approved"
+           onClick={() => setFilterStatus("APPROVED")}
+           >APPROVED</button>
+          <button className="btn-doc-needed"
+            onClick={() => setFilterStatus("PENDING")} 
+            >Further Doc Needed</button>
         </div>
         {/* Pending Section */}
         <div className="pending-info">
@@ -104,7 +122,7 @@ export default function ApprovalPage() {
             </tr>
           </thead>
           <tbody>
-            {doctors.map((doc) => (
+            {filteredDoctors.map((doc) => (
               <tr
                 key={doc.id}
                 onClick={() => navigate(`/doctor-details-page/${doc.id}`)}

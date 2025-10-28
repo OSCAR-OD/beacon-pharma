@@ -327,7 +327,11 @@
 }
 
 .status.pending {
-  color: #0fc1a7;
+  color: #63c2d1;
+  font-weight: bold;
+}
+.status.approved {
+  color: #64c17d;
   font-weight: bold;
 }
 
