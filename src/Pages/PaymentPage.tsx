@@ -7,6 +7,7 @@ import "./LoginPage.css";
 import "./AdminPanel.css";
 import "./SearchPage.css";
 import Sidebar from "../Components/Sidebar/Sidebar";
+import ProfilePic from "../Components/Sidebar/ProfilePic";
 export default function PaymentPage() {
   const navigate = useNavigate();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -109,6 +110,13 @@ export default function PaymentPage() {
             <i className="fa-solid fa-bars"></i>
           </button>
           <h2>Payment</h2>
+              <nav className="navbar">
+              <div className="navbar-container">
+                <div className="navbar-right">
+                  <ProfilePic />
+                </div>
+              </div>
+            </nav>
         </header>
         {/* Sub Header */}
         <div className="sub-header">
@@ -133,6 +141,11 @@ export default function PaymentPage() {
             <i className="fa-solid fa-download"></i> Download All
           </button>
         </div>
+         <div className="role-hidden-btn">
+              <button className="doctor-btn">FROM</button>
+              <button className="patient-btn">TO-DATE</button>
+            </div>
+          <div className="table-container">
         <table className="approval-table">
           <thead>
             <tr>
@@ -163,6 +176,7 @@ export default function PaymentPage() {
             ))}
           </tbody>
         </table>
+        </div>
       </div>
     </div>
   );

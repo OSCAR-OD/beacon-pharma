@@ -5,6 +5,8 @@ import "./LoginPage.css";
 import "./AdminPanel.css";
 import "./DoctorDetail.css";
 import "./PatientProfile.css";
+import Sidebar from "../Components/Sidebar/Sidebar";
+import ProfilePic from "../Components/Sidebar/ProfilePic";
 // Doctor Chat data array
 const doctorMessages = [
   {
@@ -113,19 +115,33 @@ const patientMessages = [
 
 export default function ChatMessages() {
   const navigate = useNavigate();
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [activeChat, setActiveChat] = useState<"doctor" | "patient">("doctor");
   // Select correct message list based on activeChat
   const currentMessages =
     activeChat === "doctor" ? doctorMessages : patientMessages;
 
   return (
-    <div className="doctor-detail-container">
-      {/* Top Navbar */}
+      <div className="approval-page">
+      <Sidebar
+        isOpen={isSidebarOpen}
+        toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
+      />
+   <div className="container-body">
       <header className="approval-header">
-        <button className="menu-btn">
+        <button className="menu-btn"
+            onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+            >
           <i className="fa-solid fa-bars"></i>
         </button>
         <h2>Chat & FAQ &gt; Chat</h2>
+            <nav className="navbar">
+            <div className="navbar-container">
+              <div className="navbar-right">
+                <ProfilePic />
+              </div>
+            </div>
+          </nav>
       </header>
 
       {/* Sub Header */}
@@ -196,6 +212,7 @@ export default function ChatMessages() {
           ))}
         </div>
       </main>
+    </div>
     </div>
   );
 }

@@ -1,9 +1,13 @@
-import //React, 
-{ useState } from "react";
+import {
+  //React,
+  useState,
+} from "react";
 import { useNavigate } from "react-router-dom";
 import "./LoginPage.css";
 import "./AdminPanel.css";
 import "./SearchPage.css";
+import Sidebar from "../Components/Sidebar/Sidebar";
+import ProfilePic from "../Components/Sidebar/ProfilePic";
 const doctors = [
   {
     id: 1,
@@ -110,25 +114,41 @@ const patients = [
 ];
 export default function PatientListPage() {
   const navigate = useNavigate();
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [activeChat] = useState<"doctor" | "patient">("patient");
   const currentMessages = activeChat === "patient" ? patients : doctors;
 
   return (
     <div className="approval-page">
-      {/* Header */}
-      <header className="approval-header">
-        <button className="menu-btn">
-          <i className="fa-solid fa-bars"></i>
-        </button>
-        <h2>Patient List</h2>
-      </header>
-      {/* Sub Header */}
-      <div className="sub-header">
-        <div className="left-section">
-          <button className="back-btn" onClick={() => navigate(-1)}>
-            <i className="fa-solid fa-arrow-left"></i>
+      <Sidebar
+        isOpen={isSidebarOpen}
+        toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
+      />
+      <div className="container-body">
+        {/* Header */}
+        <header className="approval-header">
+          <button
+            className="menu-btn"
+            onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+          >
+            <i className="fa-solid fa-bars"></i>
           </button>
-          {/* <div className="role-btns">
+          <h2>Patient List</h2>
+              <nav className="navbar">
+            <div className="navbar-container">
+              <div className="navbar-right">
+                <ProfilePic />
+              </div>
+            </div>
+          </nav>
+        </header>
+        {/* Sub Header */}
+        <div className="sub-header">
+          <div className="left-section">
+            <button className="back-btn" onClick={() => navigate(-1)}>
+              <i className="fa-solid fa-arrow-left"></i>
+            </button>
+            {/* <div className="role-btns">
             <button 
             className={`doctor-btn ${
               activeChat === "doctor" ? "active-btn" : ""
@@ -143,47 +163,50 @@ export default function PatientListPage() {
           >
             PATIENT</button>
           </div> */}
+          </div>
+          <div className="search-container">
+            <i className="fa-solid fa-magnifying-glass search-icon"></i>
+            <input
+              type="text"
+              placeholder="Search by name, mobile, specialty"
+              className="search-input"
+            />
+          </div>
+          <button className="download-btn">
+            <i className="fa-solid fa-download"></i> Download All
+          </button>
         </div>
-        <div className="search-container">
-          <i className="fa-solid fa-magnifying-glass search-icon"></i>
-          <input
-            type="text"
-            placeholder="Search by name, mobile, specialty"
-            className="search-input"
-          />
-        </div>
-        <button className="download-btn">
-          <i className="fa-solid fa-download"></i> Download All
-        </button>
-      </div>
-      <table className="approval-table">
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Doctor Name</th>
-            <th>Designation</th>
-            <th>Division</th>
-            <th>Mobile</th>
-            <th>Specialty</th>
-          </tr>
-        </thead>
-        <tbody>
-          {currentMessages.map((doc) => (
-            <tr
-              key={doc.id}
-              onClick={() => navigate(`/${doc.url}/${doc.id}`)}
-              style={{ cursor: "pointer" }}
-            >
-              <td>{doc.date}</td>
-              <td>{doc.name}</td>
-              <td>{doc.designation}</td>
-              <td>{doc.division}</td>
-              <td>{doc.mobile}</td>
-              <td>{doc.specialty}</td>
+                <div className="table-container">
+        <table className="approval-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Doctor Name</th>
+              <th>Designation</th>
+              <th>Division</th>
+              <th>Mobile</th>
+              <th>Specialty</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {currentMessages.map((doc) => (
+              <tr
+                key={doc.id}
+                onClick={() => navigate(`/${doc.url}/${doc.id}`)}
+                style={{ cursor: "pointer" }}
+              >
+                <td>{doc.date}</td>
+                <td>{doc.name}</td>
+                <td>{doc.designation}</td>
+                <td>{doc.division}</td>
+                <td>{doc.mobile}</td>
+                <td>{doc.specialty}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        </div>
+      </div>
     </div>
   );
 }

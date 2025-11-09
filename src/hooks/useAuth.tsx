@@ -1,20 +1,21 @@
-"use client";
 import { useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
 
 interface DecodedUser {
   UserInfo: {
     email: string;
-    firstName: string;
-    roles: string[];
+    name: string;
+    role: string;
+    img: string;
   };
 }
 
 const useAuth = () => {
   const [authData, setAuthData] = useState({
-    email: "",
+    authEmail: "",
     isName: "User",
-    roles: [] as string[],
+    role: "User",
+    img: "",
     isUser: false,
     isAdmin: false,
     status: "User",
@@ -26,16 +27,18 @@ const useAuth = () => {
     if (token) {
       try {
         const decoded: DecodedUser = jwtDecode(token);
-        const { email, firstName, roles } = decoded.UserInfo;
+        const { email, name, role, img } = decoded.UserInfo;
+        //console.log("decoded.UserInfo", email);
 
-        const isUser = roles.includes("User");
-        const isAdmin = roles.includes("Admin");
+    const isAdmin = role === "Admin" || role === "Super Admin";
+        const isUser = role === "User" || role === "Employee";
         const status = isAdmin ? "Admin" : "User";
 
         setAuthData({
-          email,
-          isName: firstName,
-          roles,
+          authEmail:email,
+          isName: name,
+           role,
+          img,
           isUser,
           isAdmin,
           status,

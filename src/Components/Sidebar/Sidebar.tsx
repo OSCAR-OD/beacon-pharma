@@ -7,11 +7,8 @@ interface SidebarProps {
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
-    const navigate = useNavigate();
-   const handleLogout = () => {
-    localStorage.clear(); // clear all local storage data
-    navigate("/login"); // redirect to login page
-  };
+    //const navigate = useNavigate();
+
   return (
     <aside className={`sidebar ${isOpen ? "open" : ""}`}>
       <button className="toggle-menu-btn" onClick={toggleSidebar}>
@@ -90,14 +87,14 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
             &nbsp;&nbsp;<span>Role Management</span>
           </a>
         </li>
-        <li>
+        {/* <li>
           <a 
-            onClick={handleLogout}
+            // onClick={handleLogout}
           >
             <i className="fa-solid fa-arrow-right-from-bracket sidebar-icon Prescription-icon"></i>
             &nbsp;&nbsp;<span>Logout</span>
           </a>
-        </li>
+        </li> */}
       </ul>
     </aside>
   );

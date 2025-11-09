@@ -9,6 +9,7 @@ import "./AdminPanel.css";
 import "./SearchPage.css";
 import axiosInstance from "../hooks/axiosInstance";
 import Sidebar from "../Components/Sidebar/Sidebar";
+import ProfilePic from "../Components/Sidebar/ProfilePic";
 
 export default function SearchPage() {
   const navigate = useNavigate();
@@ -69,6 +70,13 @@ export default function SearchPage() {
             <i className="fa-solid fa-bars"></i>
           </button>
           <h2>Search</h2>
+          <nav className="navbar">
+            <div className="navbar-container">
+              <div className="navbar-right">
+                <ProfilePic />
+              </div>
+            </div>
+          </nav>
         </header>
         {/* Sub Header */}
         <div className="sub-header">
@@ -107,44 +115,64 @@ export default function SearchPage() {
             <i className="fa-solid fa-download"></i> Download All
           </button>
         </div>
-        <table className="approval-table">
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>
-                {activeChat === "doctor" ? "Doctor Name" : "Patient Name"}
-              </th>
-              <th>Designation</th>
-              <th>Division</th>
-              <th>Mobile</th>
-              <th>Specialty</th>
-            </tr>
-          </thead>
-          <tbody>
-            {currentMessages.map((doc) => (
-              <tr
-                key={doc.id}
-                onClick={() =>
-                  navigate(
-                    `/${
-                      activeChat === "doctor"
-                        ? "doctor-profile"
-                        : "patient-profile"
-                    }/${doc._id}`
-                  )
-                }
-                style={{ cursor: "pointer" }}
-              >
-                <td>{doc.date}</td>
-                <td>{doc.name}</td>
-                <td>{doc.designation}</td>
-                <td>{doc.division}</td>
-                <td>{doc.mobile}</td>
-                <td>{doc.specialty}</td>
+        <div className="role-hidden-btn">
+          <button
+            className={`doctor-btn ${
+              activeChat === "doctor" ? "active-btn" : ""
+            }`}
+            onClick={() => setActiveChat("doctor")}
+          >
+            DOCTOR
+          </button>
+          <button
+            className={`patient-btn ${
+              activeChat === "patient" ? "active-btn" : ""
+            }`}
+            onClick={() => setActiveChat("patient")}
+          >
+            PATIENT
+          </button>
+        </div>
+        <div className="table-container">
+          <table className="approval-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>
+                  {activeChat === "doctor" ? "Doctor Name" : "Patient Name"}
+                </th>
+                <th>Designation</th>
+                <th>Division</th>
+                <th>Mobile</th>
+                <th>Specialty</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {currentMessages.map((doc) => (
+                <tr
+                  key={doc.id}
+                  onClick={() =>
+                    navigate(
+                      `/${
+                        activeChat === "doctor"
+                          ? "doctor-profile"
+                          : "patient-profile"
+                      }/${doc._id}`
+                    )
+                  }
+                  style={{ cursor: "pointer" }}
+                >
+                  <td>{doc.date}</td>
+                  <td>{doc.name}</td>
+                  <td>{doc.designation}</td>
+                  <td>{doc.division}</td>
+                  <td>{doc.mobile}</td>
+                  <td>{doc.specialty}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

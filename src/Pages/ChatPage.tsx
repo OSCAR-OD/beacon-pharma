@@ -7,6 +7,7 @@ import "./LoginPage.css";
 import "./AdminPanel.css";
 import "./UserPage.css";
 import Sidebar from "../Components/Sidebar/Sidebar";
+import ProfilePic from "../Components/Sidebar/ProfilePic";
 export default function ChatPage() {
   const navigate = useNavigate();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -26,6 +27,13 @@ export default function ChatPage() {
             <i className="fa-solid fa-bars"></i>
           </button>
           <h2>Chat & FAQ</h2>
+            <nav className="navbar">
+            <div className="navbar-container">
+              <div className="navbar-right">
+                <ProfilePic />
+              </div>
+            </div>
+          </nav>
         </header>
         {/* Sub Header */}
         <div className="sub-header">

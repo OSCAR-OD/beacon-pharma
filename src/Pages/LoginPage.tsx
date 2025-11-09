@@ -22,7 +22,7 @@ export default function LoginPage() {
       const { accessToken } = response.data;
       if (accessToken) {
         //console.log("token", accessToken);
-        localStorage.setItem("accessToken", accessToken);
+        localStorage.setItem("token", accessToken);
         navigate("/admin-dashboard");
       } else {
         setErrorMsg("Login failed: No token received.");

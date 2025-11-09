@@ -26,6 +26,10 @@
 }
 
 /* Doctor/Patient buttons */
+.dash-btns {
+  display: flex;
+  gap: 0.6rem;
+}
 .role-btns {
   display: flex;
   gap: 0.6rem;
@@ -44,7 +48,8 @@
 }
 
 .doctor-btn {
-  background: #00cbff;
+  /* background: #00cbff; */
+  background: #00eb9b;
   color: #fff;
 }
 
@@ -85,6 +90,10 @@
 }
 .month-btn:hover {
   background: #05df95;
+}
+.status-btns {
+  display: flex;
+  gap: 0.6rem;
 }
 /* Center search bar */
 .search-container {
@@ -235,4 +244,24 @@
     opacity: 1;
     transform: scale(1);
   }
+}
+.role-hidden-btn {
+display: none;
+}
+@media (max-width: 500px) {
+  .role-btns{
+    display: none;
+  }
+.role-hidden-btn {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+.sub-header {
+      padding: 0.6rem 0.3rem;
+}
+.download-btn {
+      padding: 0.6rem 0.3rem;
+}
+
 }

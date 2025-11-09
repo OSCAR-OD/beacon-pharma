@@ -1,18 +1,38 @@
-//import React from "react";
+import {
+  //React,
+  useState,
+} from "react";
 import { useNavigate } from "react-router-dom";
 import "./LoginPage.css";
 import "./AdminPanel.css";
 import "./DoctorDetail.css";
+import ProfilePic from "../Components/Sidebar/ProfilePic";
+import Sidebar from "../Components/Sidebar/Sidebar";
 export default function DoctorDetailPage() {
   const navigate = useNavigate();
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   return (
-    <div className="doctor-detail-container">
+    <div className="approval-page">
+      <Sidebar
+        isOpen={isSidebarOpen}
+        toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
+      />
+      <div className="container-body">
       {/* Header */}
       <header className="approval-header">
-        <button className="menu-btn">
+        <button className="menu-btn"
+         onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+        >
           <i className="fa-solid fa-bars"></i>
         </button>
         <h2>Approval &gt; Doctors Details</h2>
+              <nav className="navbar">
+              <div className="navbar-container">
+                <div className="navbar-right">
+                  <ProfilePic />
+                </div>
+              </div>
+            </nav>
       </header>
       {/* Sub Header */}
       <div className="sub-header">
@@ -28,7 +48,7 @@ export default function DoctorDetailPage() {
             // height={100}
             src="/assets/images/dr.png"
             alt="Doctor"
-            className="doctor-photo"
+            className="doc-profile-img"
           />
           <div>
             <h2 className="doctor-name">Dr. Shamim Shakil</h2>
@@ -112,6 +132,7 @@ export default function DoctorDetailPage() {
           <div className="doc-placeholder"></div>
         </div>
       </div>
+    </div>
     </div>
   );
 }

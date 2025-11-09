@@ -7,6 +7,7 @@ import "./LoginPage.css";
 import "./AdminPanel.css";
 import "./UserPage.css";
 import Sidebar from "../Components/Sidebar/Sidebar";
+import ProfilePic from "../Components/Sidebar/ProfilePic";
 export default function UserPage() {
   const navigate = useNavigate();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -19,13 +20,20 @@ export default function UserPage() {
       <div className="container-body">
         {/* Header */}
         <header className="approval-header">
-          <button 
-          className="menu-btn"
-           onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-           >
+          <button
+            className="menu-btn"
+            onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+          >
             <i className="fa-solid fa-bars"></i>
           </button>
           <h2>User</h2>
+          <nav className="navbar">
+            <div className="navbar-container">
+              <div className="navbar-right">
+                <ProfilePic />
+              </div>
+            </div>
+          </nav>
         </header>
         {/* Sub Header */}
         <div className="sub-header">

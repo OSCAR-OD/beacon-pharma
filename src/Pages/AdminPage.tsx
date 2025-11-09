@@ -6,6 +6,7 @@ import "./LoginPage.css";
 import "./AdminPanel.css";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../Components/Sidebar/Sidebar";
+import ProfilePic from "../Components/Sidebar/ProfilePic";
 export default function AdminPanel() {
   const navigate = useNavigate();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -27,19 +28,13 @@ export default function AdminPanel() {
                 <i className="fa-solid fa-bars"></i>
               </button>
               <h2>Admin Panel Home</h2>
-              {/* <nav className="navbar">
+              <nav className="navbar">
               <div className="navbar-container">
                 <div className="navbar-right">
-                  <div className="navbar-user">
-                    <img
-                      src="https://i.pravatar.cc/32"
-                      alt="avatar"
-                      className="navbar-avatar"
-                    />
-                  </div>
+                  <ProfilePic />
                 </div>
               </div>
-            </nav> */}
+            </nav>
             </header>
             <main className="admin-body">
               <div className="row"></div>
@@ -58,7 +53,7 @@ export default function AdminPanel() {
                   <br />
                   <br />
                   User
-                </div>
+                  </div>
                 <div className="card" onClick={() => navigate("/search")}>
                   <i className="fa-solid fa-magnifying-glass admin-icon Search-icon"></i>
                   <br />

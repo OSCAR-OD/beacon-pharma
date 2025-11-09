@@ -8,6 +8,7 @@ import "./AdminPanel.css";
 import "./DoctorDetail.css";
 import "./PatientProfile.css";
 import Sidebar from "../Components/Sidebar/Sidebar";
+import ProfilePic from "../Components/Sidebar/ProfilePic";
 export default function DashboardPage() {
   const navigate = useNavigate();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -27,6 +28,13 @@ export default function DashboardPage() {
             <i className="fa-solid fa-bars"></i>
           </button>
           <h2>Dashboard</h2>
+          <nav className="navbar">
+            <div className="navbar-container">
+              <div className="navbar-right">
+                <ProfilePic />
+              </div>
+            </div>
+          </nav>
         </header>
         {/* Sub Header */}
         <div className="sub-header">
@@ -40,7 +48,7 @@ export default function DashboardPage() {
             <div className="appointment-info">
               <h2>Appointment</h2>
               <br />
-              <div className="role-btns">
+              <div className="dash-btns">
                 <div className="appointment-btn">
                   <button className="appointment-btn-clk">Today</button>
                   126
@@ -60,7 +68,7 @@ export default function DashboardPage() {
             <div className="appointment-info">
               <h2>Doctor's</h2>
               <br />
-              <div className="role-btns">
+              <div className="dash-btns">
                 <div className="appointment-btn">
                   <button className="appointment-btn-clk">Total</button>
                   1226
@@ -80,7 +88,7 @@ export default function DashboardPage() {
             <div className="appointment-info">
               <h2>Doctor Demographic Registered</h2>
               <br />
-              <div className="role-btns">
+              <div className="dash-btns">
                 <button className="appointment-btn-clk">
                   Division
                   <i className="fa-solid fa-angle-down"></i>
@@ -97,7 +105,7 @@ export default function DashboardPage() {
             <div className="appointment-info">
               <h2>Doctor Speciality</h2>
               <br />
-              <div className="role-btns">
+              <div className="dash-btns">
                 <button className="appointment-btn-clk">
                   Speciality
                   <i className="fa-solid fa-angle-down"></i>
@@ -110,7 +118,7 @@ export default function DashboardPage() {
             <div className="appointment-info">
               <h2>Patient Demographic Registered</h2>
               <br />
-              <div className="role-btns">
+              <div className="dash-btns">
                 <button className="appointment-btn-clk">
                   Division
                   <i className="fa-solid fa-angle-down"></i>

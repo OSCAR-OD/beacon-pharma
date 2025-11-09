@@ -1,20 +1,40 @@
-//import React from "react";
+import {
+  //React,
+  useState,
+} from "react";
 import { useNavigate } from "react-router-dom";
 import "./LoginPage.css";
 import "./AdminPanel.css";
 import "./DoctorDetail.css";
 import "./PatientProfile.css";
+import ProfilePic from "../Components/Sidebar/ProfilePic";
+import Sidebar from "../Components/Sidebar/Sidebar";
 export default function DoctorStatus() {
   const navigate = useNavigate();
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
-    <div className="doctor-detail-container">
+    <div className="approval-page">
+      <Sidebar
+        isOpen={isSidebarOpen}
+        toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
+      />
+      <div className="container-body">
       {/* Top Navbar */}
       <header className="approval-header">
-        <button className="menu-btn">
+        <button className="menu-btn"
+         onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+            >
           <i className="fa-solid fa-bars"></i>
         </button>
         <h2>Appointment &gt; Doctor Status</h2>
+         <nav className="navbar">
+              <div className="navbar-container">
+                <div className="navbar-right">
+                  <ProfilePic />
+                </div>
+              </div>
+            </nav>
       </header>
       {/* Sub Header */}
       <div className="sub-header">
@@ -48,7 +68,7 @@ export default function DoctorStatus() {
             </p>
             <br />
             <br />
-            <div className="role-btns">
+            <div className="status-btns">
               <button className="today-btn">TODAY-5/12</button>
               <button className="week-btn">WEEK-12/72</button>
               <button className="month-btn">MONTH-55/312</button>
@@ -56,6 +76,7 @@ export default function DoctorStatus() {
           </div>
         </div>
       </main>
+    </div>
     </div>
   );
 }

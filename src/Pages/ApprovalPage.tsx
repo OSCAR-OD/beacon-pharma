@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import "./LoginPage.css";
 import "./AdminPanel.css";
 import Sidebar from "../Components/Sidebar/Sidebar";
+import ProfilePic from "../Components/Sidebar/ProfilePic";
 export default function ApprovalPage() {
   const navigate = useNavigate();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -74,20 +75,13 @@ export default function ApprovalPage() {
             <i className="fa-solid fa-bars"></i>
           </button>
           <h2>Approval</h2>
-          {/* <nav className="navbar">
+            <nav className="navbar">
               <div className="navbar-container">
-                <div className="col-lg-2 col-xl-2"></div>
                 <div className="navbar-right">
-                  <div className="navbar-user">
-                    <img
-                      src="https://i.pravatar.cc/32"
-                      alt="avatar"
-                      className="navbar-avatar"
-                    />
-                  </div>
+                  <ProfilePic />
                 </div>
               </div>
-            </nav> */}
+            </nav>
         </header>
         {/* Sub Header */}
         <div className="sub-header">
@@ -111,6 +105,7 @@ export default function ApprovalPage() {
           </h3>
         </div>
         {/* Table */}
+        <div className="table-container">
         <table className="approval-table">
           <thead>
             <tr>
@@ -139,6 +134,7 @@ export default function ApprovalPage() {
             ))}
           </tbody>
         </table>
+        </div>
       </div>
     </div>
   );

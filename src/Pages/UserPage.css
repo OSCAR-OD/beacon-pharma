@@ -1,11 +1,10 @@
-.user-container{
-
+.user-container {
 }
 .user-card {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 20px;         /* spacing between buttons */
+  gap: 20px; /* spacing between buttons */
   margin-top: 17vw; /* push down into view */
 }
 
@@ -33,13 +32,28 @@
   background-color: #1565c0;
 }
 
+.user-card .btn.create-patient {
+  background-color: #6070ff; /* green */
+}
+
+.user-card .btn.create-patient:hover {
+  background-color: #1d2dbd;
+}
+
 .user-card .btn.patient {
   background-color: #00c853; /* green */
 }
+
 .user-card .btn.patient:hover {
   background-color: #009624;
 }
 /* Chat page */
-.chat-btn{
+.chat-btn {
   padding: 0.6rem 2.5rem !important;
+}
+
+@media (max-width: 500px) {
+  .user-card {
+    flex-direction: column;
+  }
 }

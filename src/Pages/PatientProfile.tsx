@@ -1,20 +1,35 @@
-//import React from "react";
+import {
+  //React,
+  useState,
+} from "react";
 import { useNavigate } from "react-router-dom";
 import "./LoginPage.css";
 import "./AdminPanel.css";
 import "./DoctorDetail.css";
 import "./PatientProfile.css";
+import ProfilePic from "../Components/Sidebar/ProfilePic";
 export default function PatientProfile() {
   const navigate = useNavigate();
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
-    <div className="doctor-detail-container">
+
+      <div className="container-body">
       {/* Top Navbar */}
       <header className="approval-header">
-        <button className="menu-btn">
+        <button className="menu-btn"
+        onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+          >
           <i className="fa-solid fa-bars"></i>
         </button>
         <h2>Search &gt; Patient &gt; Profile</h2>
+              <nav className="navbar">
+            <div className="navbar-container">
+              <div className="navbar-right">
+                <ProfilePic />
+              </div>
+            </div>
+          </nav>
       </header>
       {/* Sub Header */}
       <div className="sub-header">

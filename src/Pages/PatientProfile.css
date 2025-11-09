@@ -298,3 +298,18 @@
   color: white !important;
   border-color: #0fc1a7 !important;
 }
+
+@media (max-width: 500px) {
+.faq-container {
+    max-width: 95vw;
+}
+  .message-container {
+    max-width: 95vw;
+}
+.message-card {
+    margin: 5px 0px;
+}
+.profile-card {
+    flex-direction: column;
+}
+}
